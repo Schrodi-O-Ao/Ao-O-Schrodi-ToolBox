@@ -1,6 +1,5 @@
 """Python csv helpers."""
-# feat(utils): add csv utility helpers
-# style(utils): improve spacing and formatting
+
 import csv
 import io
 import logging
@@ -25,7 +24,6 @@ def read_csv_rows(path: PathLike, *, encoding: str = _READ_CONFIG, delimeter: st
     rows = list(reader)
     logger.debug("Read %d rows from %s", len(rows), path)
     return rows
-
 
 # write_csv_rows
 
@@ -53,8 +51,6 @@ def get_csv_headers(path: Pathlike, *, encoding=_READ_CONFIG, delimeter: str =",
 
     with open(Path(path).expanduser(), mode="r", encoding=encoding, newline="") as file:
         return next(csv.reader(file, delimeter=delimeter), [])
-
-
 
 # check_required_columns
 
