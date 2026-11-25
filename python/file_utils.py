@@ -17,6 +17,7 @@ type PathLike = str | os.PathLike[str]
 
 def ensure_directory(directory: PathLike) -> Path:
     """Create `directory` (and parents) if needed and return it as a Path."""
+
     path = Path(directory).expanduser()
     path.mkdir(parents=True, exist_ok=True)
     logger.debug("Ensured directory: %s", path)
@@ -36,6 +37,7 @@ def get_file_size(path: Pathlike) -> int:
 
 def read_text_file(path: Pathlike, encoding:str = "utf-8", *, errors: str = "strict", newline: str | None = None) -> str:
     """Read an entire text file and return it's content as string."""
+
     path = Path(path).expanduser()
     with open(path, mode="r", encoding=encoding, errors=errors, newline=newline) as file:
         text = file.read()
@@ -46,6 +48,7 @@ def read_text_file(path: Pathlike, encoding:str = "utf-8", *, errors: str = "str
 
 def write_text_file(path, text: str, encoding='utf-8', *, make_dirs=True, newline=None, errors='strict') -> Path:
     """Write text to a file and return the path."""
+
     path = Path(path).expanduser()
     if make_dirs:
         ensure_directory(path.parent)
@@ -66,6 +69,7 @@ def write_text_file(path, text: str, encoding='utf-8', *, make_dirs=True, newlin
 
 def find_files_by_extension(directory, extensions: str | Iterable[str], *, recursive=True) -> Lisr[Path]:
     """Return a sorted list of files in a directory that are extensions."""
+    
     root = Path(directory).expanduser()
     if not root.is_dir():
         raise NotADirectoryError(f"Not a director: {root}")
